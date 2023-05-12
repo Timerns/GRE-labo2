@@ -1,4 +1,4 @@
-package gre.lab2.groupeX;
+package gre.lab2.groupe1;
 
 /**
  * Classe qui ...
