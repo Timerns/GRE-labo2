@@ -3,6 +3,12 @@ package gre.lab2.groupeX;
 import gre.lab2.gui.MazeBuilder;
 import gre.lab2.gui.MazeGenerator;
 
+/**
+ * Classe qui génère un labyrinthe aléatoire à l'aide de l'algorithme de Kruskal
+ *
+ * @author Grégory Rey-Mermet
+ * @author Tim Ernst
+ */
 public final class KruskalMazeGenerator implements MazeGenerator {
   @Override
   public void generate(MazeBuilder builder, int from) {
