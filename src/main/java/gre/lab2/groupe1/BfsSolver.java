@@ -17,6 +17,30 @@ import java.util.*;
 public final class BfsSolver implements MazeSolver {
   @Override
   public List<Integer> solve(Graph graph, int source, int destination, VertexLabelling<Integer> treatments) {
-    return Collections.emptyList();
+    int[] prev = new int[graph.nbVertices()];
+    Queue<Integer> queue = new LinkedList<>();
+    queue.add(source);
+    int i = queue.remove();
+    boolean notFound = true;
+    while (notFound) {
+      treatments.setLabel(i, 1);
+      for (int n: graph.neighbors(i)) {
+        if(treatments.getLabel(n) == 1) continue;
+        queue.add((n));
+        prev[n] = i;
+        if(n == destination){
+          notFound = false;
+        }
+      }
+      i = queue.remove();
+    }
+
+    List<Integer> res = new LinkedList<>();
+    res.add(destination);
+    while (res.get(res.size() - 1) != source) {
+      res.add(prev[res.get(res.size() - 1)]);
+    }
+    Collections.reverse(res);
+    return res;
   }
 }
