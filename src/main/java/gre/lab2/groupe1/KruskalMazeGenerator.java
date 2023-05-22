@@ -21,20 +21,13 @@ public final class KruskalMazeGenerator implements MazeGenerator {
     List<Edge> edges = builder.topology().edges();
     Collections.shuffle(edges);
     UnionFind uf = new UnionFind(builder.topology().nbVertices());
+
     for (Edge e: edges) {
-      if(uf.union(e.u(),e.v())) {
+      if (uf.union(e.u(),e.v())) {
         builder.removeWall(e.u(), e.v());
         builder.progressions().setLabel(e.u(), Progression.PROCESSED);
         builder.progressions().setLabel(e.v(), Progression.PROCESSED);
       }
     }
-
   }
 }
-
-// TODO
-//  - Renommage du package ;
-//  - Implémentation des classes KruskalMazeGenerator, UnionFind et BfsSolver ;
-//  - Documentation abondante des trois classes comprenant :
-//    - la javadoc, avec auteurs et description des implémentations ;
-//    - des commentaires sur les différentes parties de vos algorithmes.
