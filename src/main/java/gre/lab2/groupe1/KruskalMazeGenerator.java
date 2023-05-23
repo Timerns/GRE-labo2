@@ -17,12 +17,14 @@ import java.util.List;
 public final class KruskalMazeGenerator implements MazeGenerator {
   @Override
   public void generate(MazeBuilder builder, int from) {
-    // Affichage : après union, marquer les deux extrémités de l'arête traitée comme PROCESSED puis supprimer le mur
+    //Affichage : après union, marquer les deux extrémités de l'arête traitée comme PROCESSED puis supprimer le mur
     List<Edge> edges = builder.topology().edges();
+    //On veut s'assurer que les arrêtes soient prises aléatoirement pour la génération du labyrinthe
     Collections.shuffle(edges);
     UnionFind uf = new UnionFind(builder.topology().nbVertices());
 
     for (Edge e: edges) {
+      //Si on peut réaliser l'union on enlève le mur entre les 2 sommets
       if (uf.union(e.u(),e.v())) {
         builder.removeWall(e.u(), e.v());
         builder.progressions().setLabel(e.u(), Progression.PROCESSED);
